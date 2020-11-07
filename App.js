@@ -1,9 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View, FlatList, ScrollView, TextInput, TouchableOpacity  } from 'react-native';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import io from "socket.io-client";
-import { FlatList, ScrollView, TextInput, TouchableOpacity } from 'react-native-gesture-handler';
  
 export default function App() {
 
