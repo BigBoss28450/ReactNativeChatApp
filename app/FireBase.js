@@ -1,4 +1,5 @@
 import firebase from "firebase"
+import ENV from "./config/ENV";
 
 class FireBase {
     constructor() {
@@ -8,14 +9,14 @@ class FireBase {
 
     init = () =>
       firebase.initializeApp({
-        apiKey: "AIzaSyCrt8SKl2lCQrQgpq6aalFszgLBYEG7fJA",
+        apiKey: ENV.apiKey,
         authDomain: "pruebas-57846.firebaseapp.com",
         databaseURL: "https://pruebas-57846.firebaseio.com",
         projectId: "pruebas-57846",
         storageBucket: "pruebas-57846.appspot.com",
-        messagingSenderId: "673920671461",
-        appId: "1:673920671461:web:4b05b7f54d13c688ffbe0c",
-        measurementId: "G-PY72N5MN58"
+        messagingSenderId: ENV.messagingSenderId,
+        appId: ENV.appId,
+        measurementId: ENV.measurementId
       });
 
     observeAuth = () =>

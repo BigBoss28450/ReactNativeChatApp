@@ -64,4 +64,4 @@ buck-out/
 web-build/
 
 # env
-.env
+ENV.js

@@ -6,8 +6,9 @@ export default function App() {
 
   // VARIABLES
   const user = {
+    _id: FireBase.shared.uid,
     name: "Alexis",
-    _id: FireBase.shared.uid
+    avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRyWFNrDUra11jRIW22twL8V8eAYGhFjMxu9A&usqp=CAU",
   }
 
   // STATES
