@@ -3,6 +3,14 @@ import { GiftedChat } from 'react-native-gifted-chat'
 import FireBase from './app/FireBase';
 
 export default function App() {
+
+  // VARIABLES
+  const user = {
+    name: "Alexis",
+    _id: FireBase.shared.uid
+  }
+
+  // STATES
   const [messages, setMessages] = useState([
     {
       _id: 1,
@@ -29,7 +37,7 @@ export default function App() {
       messages={messages}
       // onSend={messages => onSend(messages)}
       onSend={FireBase.shared.send}
-      user={this.user}
+      user={user}
     />
   )
 }
