@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { GiftedChat } from 'react-native-gifted-chat'
 import FireBase from './app/FireBase';
 
@@ -36,7 +36,8 @@ export default function App() {
   return (
     <GiftedChat
       messages={messages}
-      // onSend={messages => onSend(messages)}
+      placeholder="Mensaje..."
+      isTyping={true}
       onSend={FireBase.shared.send}
       user={user}
     />
