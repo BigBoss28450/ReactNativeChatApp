@@ -44,10 +44,10 @@ class FireBase {
     parse = snapshot => {
         const { timestamp: numberStamp, text, user } = snapshot.val();
         const { key: _id } = snapshot;
-        const timestamp = new Date(numberStamp);
+        const createdAt = new Date(numberStamp);
         const message = {
             _id,
-            timestamp,
+            createdAt,
             text,
             user,
         };
@@ -81,13 +81,6 @@ class FireBase {
     };
 
     append = message => this.ref.push(message);
-
-    get user() {  // Return our name and our UID for GiftedChat to parse
-        return {
-            name: this.props.navigation.state.params.name,
-            _id: FireBase.shared.uid,
-        };
-    }
 }
 
 FireBase.shared = new FireBase();

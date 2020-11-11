@@ -1,6 +1,14 @@
+import 'react-native-gesture-handler';
 import React, { useState, useEffect } from 'react'
 import { GiftedChat } from 'react-native-gifted-chat'
 import FireBase from './app/FireBase';
+import ChatScreen from './app/screens/ChatScreen';
+import FriendsChatList from './app/screens/FriendsChatList';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import IconButton from './app/components/basicComponents/IconButton';
+
+const Stack = createStackNavigator()
 
 export default function App() {
 
@@ -12,18 +20,7 @@ export default function App() {
   }
 
   // STATES
-  const [messages, setMessages] = useState([
-    {
-      _id: 1,
-      text: 'Hello developer',
-      createdAt: new Date(),
-      user: {
-        _id: 2,
-        name: 'React Native',
-        avatar: 'https://placeimg.com/140/140/any',
-      },
-    },
-  ]);
+  const [messages, setMessages] = useState([]);
 
   useEffect(() => {
     const unsubscribe = FireBase.shared.on((messages = []) => {
@@ -34,12 +31,48 @@ export default function App() {
   }, [])
 
   return (
-    <GiftedChat
-      messages={messages}
-      placeholder="Mensaje..."
-      isTyping={true}
-      onSend={FireBase.shared.send}
-      user={user}
-    />
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{headerTintColor: "white", headerStyle: {backgroundColor: "red"}}}>
+        <Stack.Screen 
+          name="Home"
+          component={FriendsChatList}
+          options={{ 
+            headerRight: () => (
+              <IconButton name="dots-vertical" size={25} /> 
+            ),
+            title: "Amigos"
+          }}/>
+        <Stack.Screen
+          name="Chat"
+          component={ChatScreen}
+          initialParams={{
+            messages: messages,
+            placeholder: "Aa",
+            user: user
+          }} 
+          options={{
+            headerLeft: () => {
+              const navigation = useNavigation()
+              return <IconButton name="arrow-left" size={25} onPress={() => navigation.goBack()} />
+            },
+            headerRight: () => (
+              <IconButton name="dots-vertical" size={25} /> 
+            )
+          }}/>
+      </Stack.Navigator>
+    </NavigationContainer>
+    // <FirendsChatList />
+    // <ChatScreen 
+    //   messages={messages}
+    //   onSend={FireBase.shared.send}
+    //   placeholder="Aa"
+    //   user={user}
+    // />
+    // <GiftedChat
+    //   messages={messages}
+    //   placeholder="Mensaje..."
+    //   onSend={FireBase.shared.send}
+    //   user={user}
+    // />
   )
 }
